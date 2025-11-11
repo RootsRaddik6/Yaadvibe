@@ -7,11 +7,11 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body, html { height:100%; font-family: 'Arial', sans-serif; overflow:hidden; }
+    body, html { height:100%; font-family: 'Arial', sans-serif; overflow:hidden; background:#0A3D62; }
     #map {
       width: 100%;
       height: 100vh;
-      background: url('https://i.imgur.com/3fYkL2m.jpg') center/cover no-repeat;
+      background: url('https://raw.githubusercontent.com/RootsRaddik6/Yaadvibe/main/moonrise.jpg') center/cover no-repeat;
       background-attachment: fixed;
       display: flex;
       align-items: center;
@@ -32,7 +32,7 @@
       line-height: 1.1;
       font-weight: 900;
     }
-    .palm { font-size: 2rem; margin: 0 8px; }
+    .palm { font-size: 2.5rem; margin: 0 10px; vertical-align: middle; }
     button {
       background: #FFD700;
       color: #0A3D62;
@@ -51,18 +51,13 @@
 <body>
   <div id="map">
     <div class="overlay">
-      <h1>YaadLife<span class="palm">palm_tree</span>Lite</h1>
+      <h1>YaadLife<span class="palm">🌴</span>Lite</h1>
       <button onclick="Telegram.WebApp.showAlert('Hunt X → Book Villa → Earn SBT')">Launch the Island</button>
     </div>
   </div>
   <script>
     Telegram.WebApp.ready();
-    // Force refresh prevention
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        Telegram.WebApp.expand();
-      }, 100);
-    });
+    Telegram.WebApp.expand();
   </script>
 </body>
 </html>
