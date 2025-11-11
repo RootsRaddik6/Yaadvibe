@@ -1,50 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YaadLife Lite</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, html { height:100%; font-family: 'Arial', sans-serif; overflow:hidden; }
+    #map {
+      width: 100%;
+      height: 100vh;
+      background: url('https://i.imgur.com/3fYkL2m.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .overlay {
+      text-align: center;
+      color: #FFD700;
+      text-shadow: 0 0 20px rgba(0,0,0,0.9);
+      padding: 20px;
+      max-width: 90%;
+      z-index: 10;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0 0 20px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+    .palm { font-size: 2rem; margin: 0 8px; }
+    button {
+      background: #FFD700;
+      color: #0A3D62;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 16px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      margin-top: 15px;
+      transition: all 0.2s;
+    }
+    button:active { transform: scale(0.95); }
+  </style>
+</head>
 <body>
   <div id="map">
     <div class="overlay">
-      <h1>🌴 YaadLife Lite</h1>
+      <h1>YaadLife<span class="palm">palm_tree</span>Lite</h1>
       <button onclick="Telegram.WebApp.showAlert('Hunt X → Book Villa → Earn SBT')">Launch the Island</button>
     </div>
   </div>
-
-  <style>
-  body, html { margin:0; padding:0; height:100%; font-family: sans-serif; }
-  #map {
-    width: 100%;
-    height: 100vh;
-    background: url('https://i.imgur.com/3fYkL2m.jpg') center/cover no-repeat;
-    background-attachment: fixed;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .overlay {
-    text-align: center;
-    color: #FFD700;
-    text-shadow: 0 0 15px rgba(0,0,0,0.9);
-    padding: 20px;
-    max-width: 90%;
-  }
-  h1 {
-    font-size: 2.8rem;
-    margin: 0 0 24px;
-    line-height: 1.2;
-  }
-  button {
-    background: #FFD700;
-    color: #0A3D62;
-    padding: 18px 36px;
-    border: none;
-    border-radius: 16px;
-    font-size: 1.4rem;
-    font-weight: bold;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    margin-top: 10px;
-  }
-  button:active { transform: scale(0.96); }
-</style>
-
   <script>
     Telegram.WebApp.ready();
+    // Force refresh prevention
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        Telegram.WebApp.expand();
+      }, 100);
+    });
   </script>
 </body>
+</html>
