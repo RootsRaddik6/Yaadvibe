@@ -847,6 +847,14 @@ document.getElementById('btnFlight').onclick = () => {
     alert("Choose a flight or skip");
     return;
   }
+    // STEP 5: Inland or Coastal selection
+  document.getElementById('step5').addEventListener('click', e => {
+    const card = e.target.closest('.option-card');
+    if (card) {
+      document.querySelectorAll('#step5 .option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    }
+  });
   if (state.flight) {
     document.getElementById('arriveDate').value = state.flight.arrive;
     document.getElementById('departDate').value = state.flight.depart;
