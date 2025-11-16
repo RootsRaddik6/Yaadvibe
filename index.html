@@ -593,7 +593,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (animate && total !== prevTotal) {
       el.parentElement.classList.add('animate');
       setTimeout(() => el.parentElement.classList.remove('animate'), 600);
-    }
   };
 
   const PROGRESS_ICONS = ['Jamaica', 'Plane', 'Calendar', 'Pin', 'Palm', 'Hotel', 'Taxi', 'Star', 'Money'];
@@ -622,8 +621,7 @@ const isDone = i < (currentStep === 9 ? 8 :
     if (isDone && !isActive) span.classList.add('done');
 
     prog.appendChild(span);
-  });
-};
+
 const next = n => {
   console.log(`→ Moving to step: ${n}`);
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -637,16 +635,13 @@ const next = n => {
     updateProgress();
     updateCalc(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-};
 
 const goBack = () => {
   if (currentStep > 0) {
     const prev = currentStep === 2.5 ? 2 : Math.floor(currentStep) - 1;
     next(prev);
-  }
-};  
- const calcNightsFromDates = () => {
+ 
+    const calcNightsFromDates = () => {
     const arrive = document.getElementById('arriveDate').value;
     const depart = document.getElementById('departDate').value;
     if (arrive && depart) {
@@ -655,8 +650,6 @@ const goBack = () => {
         state.nights = diff;
         document.getElementById('nightCount').textContent = diff;
         updateCalc(true);
-      }
-    }
   };
 
   const renderParishes = () => {
@@ -674,9 +667,7 @@ const goBack = () => {
       };
       c.appendChild(card);
     });
-  };
-
-  const loadStays = () => {
+const loadStays = () => {
     const c = document.getElementById('stay-options');
     c.innerHTML = '<p style="text-align:center;color:#aaa">Finding your vibe...</p>';
     setTimeout(() => {
@@ -718,10 +709,8 @@ const goBack = () => {
         updateCalc(true);
       };
       c.appendChild(card);
-    });
-  };
-
-  const loadTours = () => {
+  
+      const loadTours = () => {
     const c = document.getElementById('tour-options'); c.innerHTML = '';
     const opts = LIVE_DATA.tours[state.parish] || LIVE_DATA.tours.default;
     opts.forEach(t => {
@@ -735,10 +724,8 @@ const goBack = () => {
         updateCalc(true);
       };
       c.appendChild(card);
-    });
-  };
-
-  const loadFlights = () => {
+    
+    const loadFlights = () => {
     const c = document.getElementById('flight-options'); c.innerHTML = '';
     const opts = LIVE_DATA.flights[state.from] || LIVE_DATA.flights.default;
     opts.forEach(f => {
@@ -756,10 +743,8 @@ const goBack = () => {
         state.flight = f;
       };
       c.appendChild(card);
-    });
-  };
-
-  const showSummary = () => {
+    
+    const showSummary = () => {
     const div = document.getElementById('summary-items'); div.innerHTML = '';
     const add = (label, price, fee = 0) => {
       div.innerHTML += `<div class="item"><span>${label}</span><span>$${price}${fee ? ` + <strong>$${fee}</strong> fee` : ''}</span></div>`;
@@ -813,8 +798,6 @@ document.getElementById('startBtn').addEventListener('click', () => {
       console.log("Auto-clicked 'Yes' → going to Step 2");
     }
   }, 200);
-});
-
 // STEP 1: "Are you traveling to Jamaica?" → Auto-click "Yes"
 document.getElementById('step1').addEventListener('click', e => {
   const card = e.target.closest('.option-card');
@@ -829,9 +812,6 @@ document.getElementById('step1').addEventListener('click', e => {
         setTimeout(renderParishes, 100);
       }
     }, 150);
-  }
-});
-
 // STEP 2: "Where from?" → Next to Flights or Dates
 document.getElementById('btn2').onclick = () => {
   state.from = document.getElementById('fromCity').value;
@@ -841,9 +821,6 @@ document.getElementById('btn2').onclick = () => {
     next(2.5);
   } else {
     next(3);
-  }
-};
-
 // STEP 2.5: Flight Booking
 document.getElementById('step25').addEventListener('click', e => {
   const card = e.target.closest('.option-card');
@@ -851,7 +828,6 @@ document.getElementById('step25').addEventListener('click', e => {
     document.querySelectorAll('#step25 .option-card').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
     state.flight = null;
-  }
 });
 
 document.getElementById('btnFlight').onclick = () => {
@@ -873,8 +849,7 @@ document.getElementById('btnFlight').onclick = () => {
       document.querySelectorAll('#step25 .option-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       state.flight = null;
-    }
-  });
+    
   ['adults','kids'].forEach(id => {
     document.getElementById(id).onchange = e => { state[id] = +e.target.value; updateCalc(true); };
   });
@@ -919,8 +894,7 @@ document.getElementById('btnFlight').onclick = () => {
     if (card) {
       document.querySelectorAll('#step5 .option-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
-    }
-  });
+  
   document.querySelectorAll('.btn.back').forEach(btn => {
   btn.onclick = goBack;
 });
