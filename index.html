@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   } catch(e) { console.warn("TON Connect not loaded"); }
 
-  const updateCalc = (animate = false) => {
+    const updateCalc = (animate = false) => {
     const prevTotal = total;
     total = 0;
     if (state.stay) {
@@ -584,6 +584,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const occupancyFee = state.adults > 2 ? (state.adults - 2) * 50 : 0;
       total += base + occupancyFee + Math.round(base * 0.05);
     }
+    state.transport.forEach(t => total += t.price);
+    state.tours.forEach(t => total += t.price);
+    if (state.flight) total += state.flight.price;
+
+    const el = document.getElementById('liveTotal');
+    el.textContent = total.toFixed(2);
+    if (animate && total !== prevTotal) {
+      el.parentElement.classList.add('animate');
+      setTimeout(() => el.parentElement.classList.remove('animate'), 600);
+    }
+  };
     state.transport.forEach(t => total += t.price);
     state.tours.forEach(t => total += t.price);
     if (state.flight) total += state.flight.price;
