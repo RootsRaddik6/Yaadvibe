@@ -833,14 +833,7 @@ document.getElementById('btnFlight').onclick = () => {
   }
   next(3);
 };
-
-  document.getElementById('btn2').onclick = () => {
-    state.from = document.getElementById('fromCity').value;
-    if (!state.from) return alert("Choose your city!");
-    if (!state.isLocal) { loadFlights(); next(2.5); } else { next(3); }
-  };
-
-  document.getElementById('step25').addEventListener('click', e => {
+ document.getElementById('step25').addEventListener('click', e => {
     const card = e.target.closest('.option-card');
     if (card && card.dataset.flight === 'skip') {
       document.querySelectorAll('#step25 .option-card').forEach(c => c.classList.remove('selected'));
@@ -848,16 +841,6 @@ document.getElementById('btnFlight').onclick = () => {
       state.flight = null;
     }
   });
-
-  document.getElementById('btnFlight').onclick = () => {
-    if (state.flight) {
-      document.getElementById('arriveDate').value = state.flight.arrive;
-      document.getElementById('departDate').value = state.flight.depart;
-      calcNightsFromDates();
-    }
-    next(3);
-  };
-
   ['adults','kids'].forEach(id => {
     document.getElementById(id).onchange = e => { state[id] = +e.target.value; updateCalc(true); };
   });
